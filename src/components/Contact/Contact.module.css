@@ -1,0 +1,27 @@
+.container {
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.info_container {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    height: 20px;
+}
+
+.info_container_container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-right: 64px;
+}
+
+.svg {
+    fill: black;
+}
