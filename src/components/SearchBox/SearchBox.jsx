@@ -8,6 +8,7 @@ export default function SearchBox({ value, onFilter }) {
         type="text"
         value={value}
         onChange={(evt) => onFilter(evt.target.value)}
+        className={style.input}
     />
     </div>
 );

@@ -4,7 +4,7 @@ import { useId } from "react";
 import * as Yup from "yup";
 
 const FeedbackSchema = Yup.object().shape({
-    username: Yup.string().min(3, "Too Short!").max(50, "Too Long!").required("Required"),
+    name: Yup.string().min(3, "Too Short!").max(50, "Too Long!").required("Required"),
     number: Yup.string().min(9,"Must be a valid number!").required("Required"),
 });
 
@@ -17,13 +17,13 @@ export default function ContactForm({ onAdd }) {
     const nameFieldId = useId();
     const numberFieldId = useId();
 
-    const handleSubmit = (e) => {
-    e.preventDefault();
+    const handleSubmit = (values, { resetForm }) => {
     onAdd({
-    
+        ...values,
+        id: new Date()
     });
-    e.target.reset();
-};
+    resetForm()
+    };
     
     return (
         <Formik
@@ -34,8 +34,8 @@ export default function ContactForm({ onAdd }) {
             <Form className={style.form}>
                 <div className={style.name_number_container}>
                     <label htmlFor={nameFieldId} className={style.label}>Name</label>
-                    <Field type="text" name="username" id={nameFieldId} className={style.input} />
-                    <ErrorMessage className={style.error_message} name="username" component="span" />
+                    <Field type="text" name="name" id={nameFieldId} className={style.input} />
+                    <ErrorMessage className={style.error_message} name="name" component="span" />
                 </div>
                 <div className={style.name_number_container}>
                     <label htmlFor={numberFieldId} className={style.label}>Number</label>
