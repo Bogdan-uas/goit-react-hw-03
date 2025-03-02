@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ContactList from './components/ContactList/ContactList.jsx'
 import SearchBox from './components/SearchBox/SearchBox.jsx';
+import ContactForm from './components/ContactForm/ContactForm.jsx';
 import './App.css'
 
 function App() {
@@ -14,6 +15,12 @@ function App() {
   )
   const [filter, setFilter] = useState('');
 
+  const addInfo = (newInfo) => {
+    setInfo((prevInfos) => {
+      return [...prevInfos, newInfo];
+    });
+  };
+
   const visibleInfo = info.filter((infos) =>
     infos.name.toLowerCase().includes(filter.toLowerCase())
   );
@@ -21,6 +28,7 @@ function App() {
   return (
     <div className='main-container'>
       <h1 className='main-title'>Phonebook</h1>
+      <ContactForm onAdd={addInfo}/>
       <SearchBox value={filter} onFilter={setFilter}/>
       <ContactList info={visibleInfo} />
     </div>
